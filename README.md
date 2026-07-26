@@ -1,29 +1,82 @@
 # Multiplai
 
-> Claude Code, with a memory and a safety net.
+> The first human-centered agentic harness.
 
-Every Claude Code session starts from zero. It doesn't remember what you built
-yesterday, the permission prompts interrupt every third command — or you switch
-them off and hope for the best. Multiplai fixes both, then keeps going.
+Every agent harness right now is racing in the same direction: automate the
+human out. Longer autonomous runs, more parallel agents, memory the agent
+curates for itself, instructions it rewrites on its own. It sounds great,
+until you actually try it. An agent that doesn't really know you produces the
+average answer: the code everyone writes, the prose nobody wanted. Take
+yourself out of the loop and you're not scaling your judgment. You're
+amplifying slop.
 
-**What you get:**
+Here's the uncomfortable part: staying in the loop is work. Reviewing what ten
+sessions did overnight, correcting the same taste mistake twice, deciding what
+your agent should remember about you — at scale it's exhausting, and that
+exhaustion is exactly why everyone else concluded the human has to go.
 
-- **A memory that compounds.** Relevant context is routed into every session
-  automatically. Sessions keep a diary, capture learnings, and consolidate them
-  into long-term memory — through a review step ("dreams") where you approve
-  every change before it's written.
-- **A sandbox that makes YOLO mode safe.** Sessions run
+Multiplai makes the opposite bet. The human is the value to amplify, so the
+tooling should make being the human easier, and honestly, more pleasant.
+Capture everything automatically; spend your attention only where your
+judgment matters; make the reviewing itself fast enough that you'll actually
+do it.
+
+It starts with context, because an agent that doesn't know you can't do
+anything else well.
+
+## What that looks like in practice
+
+- **Memory that compounds, with you as editor.** Sessions keep a diary and
+  capture learnings on their own — that's the taxing part, automated. But
+  nothing is promoted to long-term memory without your sign-off: a review
+  step ("dreams") proposes consolidations and you decide which ones make it
+  in, because that curation is what shapes everything the agent does next.
+  Relevant context is then routed into every new session automatically.
+  Week 40 knows what week 1 learned, and you know why.
+- **No black boxes.** Every routing decision, memory write, and hook run
+  leaves a standardized, human-readable log line (with a structured trace
+  mirror). When the agent did something surprising, you can see what
+  happened, verify it, and steer — instead of guessing at a vibe.
+- **Autonomy that's actually safe to grant.** Sessions run
   `--dangerously-skip-permissions` inside a Docker container that *is* the
-  permission boundary, with a key-restricted SSH bridge for the few tools that
-  genuinely need your Mac (Xcode, Whisper, your real Chrome).
+  permission boundary. A key-restricted SSH bridge exists for the few tools
+  that genuinely need your Mac (Xcode, Whisper, your real Chrome), and every
+  bridge skill you enable widens that boundary: you enable them deliberately,
+  knowing what each opens up, never by default. You stop babysitting prompts
+  because the walls are real and you know exactly where the doors are.
 - **40+ skills — the memory engine plus six skill packs.** Autonomous
   spec-driven builds, deep research, transcription, Slack and Gmail, PM
-  artefacts, long-form writing. The authoritative list is the compatibility
-  matrix in the
+  artefacts, long-form writing. Each one encodes *how* the work should be
+  done, so your standards travel with the task. The authoritative list is the
+  compatibility matrix in the
   [multiplai-cc-mktplace README](https://github.com/spikelab/multiplai-cc-mktplace#compatibility-matrix).
 
-On the roadmap, not yet released: **multiplai-gui**, a native macOS/iOS cockpit
-for observing and driving many sessions at once.
+On the roadmap, not yet released: **multiplai-gui**, a native macOS/iOS
+cockpit for observing, driving, and triaging many sessions at once (a session
+is a file, so watching is free). Everyone else ports the same chat box to a
+smaller screen; what you want to do on your phone is different in kind —
+glance at what your agents did, swipe through what they learned, approve or
+redirect in seconds, put it back in your pocket. Nobody else is designing for
+that, because nobody else is optimizing for the human doing the reviewing.
+
+## Isn't this just another harness?
+
+Same species, opposite bet. The systems getting attention today put the agent
+in charge of its own evolution:
+
+- Companion agents in the OpenClaw / Hermes mold let the agent curate its own
+  memory and grow its own skills — OpenClaw goes further and rewrites its own
+  operating instructions. Run one for a month and its picture of you is
+  whatever it decided to keep.
+- Other memory pipelines compile knowledge through an autonomous LLM
+  librarian. Well-engineered, provenance-tracked, and still: the trust sits
+  with the compiler, not with you.
+
+Multiplai automates the capture and keeps the judgment. Everything gets
+recorded; nothing becomes memory without your approval; every decision the
+system makes is logged where you can read it; and the review is engineered to
+cost you minutes, not evenings. Your agent's model of you is something you
+edited, not something that accreted while you weren't looking.
 
 ## Start here
 
@@ -92,5 +145,6 @@ What shipped recently, per component:
 
 ## Status
 
-Young, personal, built in public. Expect fast movement on `main` everywhere;
+Young, personal, built in public. I run my whole working life on it — that's
+both the pitch and the disclaimer. Expect fast movement on `main` everywhere;
 what's released is what's tagged.

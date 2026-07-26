@@ -13,6 +13,16 @@ as far as it applies to prose.
 
 ## [Unreleased]
 
+### Changed
+
+- README repositioned around the human-centered thesis: new tagline ("The
+  first human-centered agentic harness"), an opening on why automating the
+  human out amplifies slop, an "Isn't this just another harness?" comparison
+  (agent-curated memory vs. human-approved memory; Hermes claims verified
+  against their live README 2026-07-26), a "No black boxes" observability
+  bullet, an explicit conscious-opt-in caveat on the SSH bridge, and the
+  gui roadmap note expanded with the mobile-native review argument.
+
 ### Added
 
 - `CLAUDE.md` — working rules for agents editing this repo: no code lives here,
