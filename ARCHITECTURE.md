@@ -11,11 +11,14 @@ persistent, self-improving working environment:
   makes every session smarter than the last;
 - a **sandboxed container runtime** that makes `--dangerously-skip-permissions` safe,
   because the container itself is the permission boundary;
-- **seven plugin packs** (~35 skills) covering development, research, media, messaging,
-  product management, and writing;
-- a **native macOS/iOS app** for observing and orchestrating many sessions at once.
+- **the memory engine plus six skill packs** — 40+ skills covering development,
+  research, media, messaging, product management, and writing (the authoritative list
+  is the compatibility matrix in the
+  [multiplai-cc-mktplace README](https://github.com/spikelab/multiplai-cc-mktplace#compatibility-matrix));
+- and, on the roadmap, a **native macOS/iOS app** for observing and orchestrating many
+  sessions at once — not yet released.
 
-Five repos, one product.
+Four published repos plus this umbrella, with the cockpit still to come.
 
 ## Components
 
@@ -25,7 +28,7 @@ Five repos, one product.
 | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features | Claude Code plugin marketplace: `multiplai-context` (the memory engine) plus six themed skill packs. Works on vanilla Claude Code. |
 | [multiplai-kit](https://github.com/spikelab/multiplai-kit) | Distribution & runtime | What you clone for the full experience: `setup.sh` scaffolds workspace + runtime, `claude.sh` launches sessions; your `~/.claude` stays untouched. |
 | [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library | Typed Python plumbing (paths, config, model client, agent runner, costing, logging) consumed by plugin scripts via immutable git-tag pins. |
-| [multiplai-gui](https://github.com/spikelab/multiplai-gui) | The cockpit | FastAPI hub + SwiftUI app (macOS/iOS): session board, live feed, chat-driving, dreams triage, costs, memory browser, health. |
+| **multiplai-gui** *(coming soon)* | The cockpit | Will be a FastAPI hub + SwiftUI app (macOS/iOS): session board, live feed, chat-driving, dreams triage, costs, memory browser, health. Not yet released; the repo stays private until it is. |
 
 ## Which part do I need?
 
@@ -34,7 +37,7 @@ Five repos, one product.
 | **Safe YOLO mode** — `--dangerously-skip-permissions` for the Claude Code you already have | `multiplai-container` standalone (see its README quickstart) | Docker |
 | **Memory + skills** on your existing Claude Code | `claude plugin marketplace add spikelab/multiplai-cc-mktplace`, install `multiplai-context`, add packs à la carte | `uv` |
 | **The full environment** — sandbox, plugins, workspace, memory, launcher | Clone `multiplai-kit` → `./setup.sh` → `./claude.sh` | Docker/OrbStack; macOS for bridge skills |
-| **Many sessions, one cockpit** | `multiplai-gui` hub + app on top of the kit | macOS host with the kit installed |
+| **Many sessions, one cockpit** | `multiplai-gui` hub + app on top of the kit — *not yet released* | macOS host with the kit installed |
 
 Each row builds on the previous — sandbox → plugins → kit → cockpit is an adoption ladder,
 not four separate products.
@@ -42,7 +45,7 @@ not four separate products.
 ## How the repos interlock
 
 ```
-                    ┌──────────────── multiplai-gui (hub + app) ─────────────┐
+                    ┌───────── multiplai-gui (hub + app, coming soon) ───────┐
                     │  observes JSONLs, drives sessions, triages dreams      │
                     ▼                                                        │
  user ──► multiplai-kit (claude.sh / setup.sh)                               │
