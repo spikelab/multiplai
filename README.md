@@ -82,8 +82,8 @@ What shipped recently, per component:
 
 <!-- TODO(changelog-link): component CHANGELOG.md files are being added by the
      sibling repo plans and are not on their `main` branches yet. When they land,
-     repoint these at the files themselves, e.g.
-     https://github.com/spikelab/multiplai-core/blob/main/CHANGELOG.md -->
+     repoint these at the files themselves — the `blob/main/CHANGELOG.md` path in
+     each component repo. -->
 
 - [multiplai-container releases](https://github.com/spikelab/multiplai-container/releases) — the tag consumed by the kit's `CONTAINER_REF` pin
 - [multiplai-core releases](https://github.com/spikelab/multiplai-core/releases) — the tags plugin scripts pin
