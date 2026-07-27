@@ -1,6 +1,6 @@
 # Multiplai
 
-> The first human-centered agentic harness.
+> Your agent's model of you should be something you edited, not something that accreted while you weren't looking.
 
 Every agent harness right now is racing in the same direction: automate the
 human out. Longer autonomous runs, more parallel agents, memory the agent
@@ -75,8 +75,7 @@ in charge of its own evolution:
 Multiplai automates the capture and keeps the judgment. Everything gets
 recorded; nothing becomes memory without your approval; every decision the
 system makes is logged where you can read it; and the review is engineered to
-cost you minutes, not evenings. Your agent's model of you is something you
-edited, not something that accreted while you weren't looking.
+cost you minutes, not evenings.
 
 ## Start here
 
@@ -102,12 +101,12 @@ the sandboxed full environment instead? Clone
 
 ## Which part do you need?
 
-Start small — each row builds on the one above it.
+Start small — move down the table as you want more of the environment.
 
 | You want | Get | Requires |
 |---|---|---|
+| Memory + skills on your existing Claude Code | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace): `/plugin marketplace add spikelab/multiplai-cc-mktplace` | `uv` |
 | Safe YOLO mode for the Claude Code you already have | [multiplai-container](https://github.com/spikelab/multiplai-container) standalone: clone, `./build.sh`, `docker run` | Docker |
-| Memory + skills on your existing Claude Code | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace): `claude plugin marketplace add spikelab/multiplai-cc-mktplace` | `uv` |
 | The full environment — sandbox, plugins, workspace, memory | [multiplai-kit](https://github.com/spikelab/multiplai-kit): clone, `./setup.sh`, `./claude.sh` | Docker/OrbStack; macOS for bridge skills |
 | Many sessions, one cockpit | **multiplai-gui** — hub + app on top of the kit. *Not yet released.* | macOS |
 
@@ -133,18 +132,20 @@ changelogs below are the release record. A dedicated docs site may follow.
 
 What shipped recently, per component:
 
-<!-- TODO(changelog-link): component CHANGELOG.md files are being added by the
-     sibling repo plans and are not on their `main` branches yet. When they land,
-     repoint these at the files themselves — the `blob/main/CHANGELOG.md` path in
-     each component repo. -->
-
-- [multiplai-container releases](https://github.com/spikelab/multiplai-container/releases) — the tag consumed by the kit's `CONTAINER_REF` pin
-- [multiplai-core releases](https://github.com/spikelab/multiplai-core/releases) — the tags plugin scripts pin
-- [multiplai-cc-mktplace releases](https://github.com/spikelab/multiplai-cc-mktplace/releases) — per-plugin `<plugin>@<version>` tags
-- [multiplai-kit releases](https://github.com/spikelab/multiplai-kit/releases) — untagged so far; the kit is consumed by `git pull && ./setup.sh`
+- [multiplai-container CHANGELOG](https://github.com/spikelab/multiplai-container/blob/main/CHANGELOG.md) — the tag consumed by the kit's `CONTAINER_REF` pin
+- [multiplai-core CHANGELOG](https://github.com/spikelab/multiplai-core/blob/main/CHANGELOG.md) — the tags plugin scripts pin
+- [multiplai-cc-mktplace CHANGELOG](https://github.com/spikelab/multiplai-cc-mktplace/blob/main/CHANGELOG.md) — an index across the per-plugin changelogs (`plugins/<plugin>/CHANGELOG.md`), tagged `<plugin>@<version>`
+- [multiplai-kit CHANGELOG](https://github.com/spikelab/multiplai-kit/blob/main/CHANGELOG.md) — untagged so far; the kit is consumed by `git pull && ./setup.sh`
 
 ## Status
 
 Young, personal, built in public. I run my whole working life on it — that's
 both the pitch and the disclaimer. Expect fast movement on `main` everywhere;
 what's released is what's tagged.
+
+## Community
+
+Questions, ideas, show-and-tell:
+[Discussions](https://github.com/spikelab/multiplai/discussions) on this repo —
+the suite's one community home. Bug reports belong on the issues of the
+component repo they concern (see [The repos](#the-repos)).
