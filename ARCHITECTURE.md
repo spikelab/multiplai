@@ -34,13 +34,13 @@ Four published repos plus this umbrella, with the cockpit still to come.
 
 | You want | Get | Requires |
 |---|---|---|
+| **Memory + skills** on your existing Claude Code | `/plugin marketplace add spikelab/multiplai-cc-mktplace`, install `multiplai-context`, add packs à la carte | `uv` |
 | **Safe YOLO mode** — `--dangerously-skip-permissions` for the Claude Code you already have | `multiplai-container` standalone (see its README quickstart) | Docker |
-| **Memory + skills** on your existing Claude Code | `claude plugin marketplace add spikelab/multiplai-cc-mktplace`, install `multiplai-context`, add packs à la carte | `uv` |
 | **The full environment** — sandbox, plugins, workspace, memory, launcher | Clone `multiplai-kit` → `./setup.sh` → `./claude.sh` | Docker/OrbStack; macOS for bridge skills |
 | **Many sessions, one cockpit** | `multiplai-gui` hub + app on top of the kit — *not yet released* | macOS host with the kit installed |
 
-Each row builds on the previous — sandbox → plugins → kit → cockpit is an adoption ladder,
-not four separate products.
+Each row wants more of the environment than the one before — plugins → sandbox → kit →
+cockpit is an adoption ladder, not four separate products.
 
 ## How the repos interlock
 

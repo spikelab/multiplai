@@ -101,12 +101,12 @@ the sandboxed full environment instead? Clone
 
 ## Which part do you need?
 
-Start small — each row builds on the one above it.
+Start small — move down the table as you want more of the environment.
 
 | You want | Get | Requires |
 |---|---|---|
+| Memory + skills on your existing Claude Code | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace): `/plugin marketplace add spikelab/multiplai-cc-mktplace` | `uv` |
 | Safe YOLO mode for the Claude Code you already have | [multiplai-container](https://github.com/spikelab/multiplai-container) standalone: clone, `./build.sh`, `docker run` | Docker |
-| Memory + skills on your existing Claude Code | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace): `claude plugin marketplace add spikelab/multiplai-cc-mktplace` | `uv` |
 | The full environment — sandbox, plugins, workspace, memory | [multiplai-kit](https://github.com/spikelab/multiplai-kit): clone, `./setup.sh`, `./claude.sh` | Docker/OrbStack; macOS for bridge skills |
 | Many sessions, one cockpit | **multiplai-gui** — hub + app on top of the kit. *Not yet released.* | macOS |
 
