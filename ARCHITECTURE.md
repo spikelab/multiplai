@@ -5,7 +5,7 @@
 > their own copies.
 
 Multiplai turns [Claude Code](https://docs.anthropic.com/en/docs/claude-code) into a
-persistent, self-improving working environment:
+persistent working environment that compounds — it learns what you approve:
 
 - a **memory + learning loop** (context routing, session diary, learnings, dreams) that
   makes every session smarter than the last;
