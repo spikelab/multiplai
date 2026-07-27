@@ -132,15 +132,10 @@ changelogs below are the release record. A dedicated docs site may follow.
 
 What shipped recently, per component:
 
-<!-- TODO(changelog-link): component CHANGELOG.md files are being added by the
-     sibling repo plans and are not on their `main` branches yet. When they land,
-     repoint these at the files themselves — the `blob/main/CHANGELOG.md` path in
-     each component repo. -->
-
-- [multiplai-container releases](https://github.com/spikelab/multiplai-container/releases) — the tag consumed by the kit's `CONTAINER_REF` pin
-- [multiplai-core releases](https://github.com/spikelab/multiplai-core/releases) — the tags plugin scripts pin
-- [multiplai-cc-mktplace releases](https://github.com/spikelab/multiplai-cc-mktplace/releases) — per-plugin `<plugin>@<version>` tags
-- [multiplai-kit releases](https://github.com/spikelab/multiplai-kit/releases) — untagged so far; the kit is consumed by `git pull && ./setup.sh`
+- [multiplai-container CHANGELOG](https://github.com/spikelab/multiplai-container/blob/main/CHANGELOG.md) — the tag consumed by the kit's `CONTAINER_REF` pin
+- [multiplai-core CHANGELOG](https://github.com/spikelab/multiplai-core/blob/main/CHANGELOG.md) — the tags plugin scripts pin
+- [multiplai-cc-mktplace CHANGELOG](https://github.com/spikelab/multiplai-cc-mktplace/blob/main/CHANGELOG.md) — an index across the per-plugin changelogs (`plugins/<plugin>/CHANGELOG.md`), tagged `<plugin>@<version>`
+- [multiplai-kit CHANGELOG](https://github.com/spikelab/multiplai-kit/blob/main/CHANGELOG.md) — untagged so far; the kit is consumed by `git pull && ./setup.sh`
 
 ## Status
 
