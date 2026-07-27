@@ -142,3 +142,10 @@ What shipped recently, per component:
 Young, personal, built in public. I run my whole working life on it — that's
 both the pitch and the disclaimer. Expect fast movement on `main` everywhere;
 what's released is what's tagged.
+
+## Community
+
+Questions, ideas, show-and-tell:
+[Discussions](https://github.com/spikelab/multiplai/discussions) on this repo —
+the suite's one community home. Bug reports belong on the issues of the
+component repo they concern (see [The repos](#the-repos)).
