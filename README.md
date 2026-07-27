@@ -1,6 +1,6 @@
 # Multiplai
 
-> The first human-centered agentic harness.
+> Your agent's model of you should be something you edited, not something that accreted while you weren't looking.
 
 Every agent harness right now is racing in the same direction: automate the
 human out. Longer autonomous runs, more parallel agents, memory the agent
@@ -75,8 +75,7 @@ in charge of its own evolution:
 Multiplai automates the capture and keeps the judgment. Everything gets
 recorded; nothing becomes memory without your approval; every decision the
 system makes is logged where you can read it; and the review is engineered to
-cost you minutes, not evenings. Your agent's model of you is something you
-edited, not something that accreted while you weren't looking.
+cost you minutes, not evenings.
 
 ## Start here
 
