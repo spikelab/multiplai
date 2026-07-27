@@ -15,25 +15,27 @@ as far as it applies to prose.
 
 ### Changed
 
-- README repositioned around the human-centered thesis: new tagline ("The
-  first human-centered agentic harness"), an opening on why automating the
+- README tagline is now the suite's one-liner — "Your agent's model of you
+  should be something you edited, not something that accreted while you
+  weren't looking" — replacing "The first human-centered agentic harness";
+  the closing sentence of the harness-comparison section was rewritten so it
+  no longer duplicates the tagline.
+- "Which part do you need?" adoption ladder reordered plugins-first
+  (marketplace → container → kit → cockpit) in both README and
+  `ARCHITECTURE.md`, with lead-ins updated to match; the marketplace-add
+  command now uses the in-session `/plugin marketplace add` form everywhere.
+- `ARCHITECTURE.md` no longer describes the environment as improving itself —
+  it is "a persistent working environment that compounds — it learns what you
+  approve".
+- README "Releases" list repoints each component at its `CHANGELOG.md` on
+  `main` (all four exist now); the `TODO(changelog-link)` comment is resolved
+  and removed.
+- README repositioned around the human-centered thesis: an opening on why automating the
   human out amplifies slop, an "Isn't this just another harness?" comparison
   (agent-curated memory vs. human-approved memory; Hermes claims verified
   against their live README 2026-07-26), a "No black boxes" observability
   bullet, an explicit conscious-opt-in caveat on the SSH bridge, and the
   gui roadmap note expanded with the mobile-native review argument.
-
-### Added
-
-- `CLAUDE.md` — working rules for agents editing this repo: no code lives here,
-  counts must be re-derived from the source repos, `multiplai-gui` stays unlinked
-  until it ships.
-- `CHANGELOG.md` (this file).
-- README "Start here" section with the one command a first-time visitor can paste.
-- README "Docs" → "Releases" subsection linking each component's release record.
-
-### Changed
-
 - README and `ARCHITECTURE.md` now present `multiplai-gui` as *coming soon* and
   unlinked, instead of hyperlinking a private repository that 404s for visitors.
 - README "Docs" section describes only artifacts that exist today; the promise of
@@ -41,6 +43,20 @@ as far as it applies to prose.
 - Skill count corrected and made growth-tolerant — "40+ skills, the memory engine
   plus six skill packs" (was "~35 skills in 7 plugin packs"), pointing at the
   `multiplai-cc-mktplace` compatibility matrix as the authoritative list.
+
+### Added
+
+- README `## Community` section — Discussions on this repo as the suite's
+  community home; bugs go to component-repo issues.
+- `SECURITY.md` — reporting contact (`security@spikelab.org`) scoped to this
+  repo's docs-and-coordination role, pointing component vulnerabilities at
+  the component repos.
+- `CLAUDE.md` — working rules for agents editing this repo: no code lives here,
+  counts must be re-derived from the source repos, `multiplai-gui` stays unlinked
+  until it ships.
+- `CHANGELOG.md` (this file).
+- README "Start here" section with the one command a first-time visitor can paste.
+- README "Docs" → "Releases" subsection linking each component's release record.
 
 ## [0.1.0] – 2026-07-26
 
