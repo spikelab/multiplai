@@ -72,22 +72,28 @@ crash — routine under `docker run --rm` — leaves an entry whose last event i
 whatever happened before it died, which reads exactly like an agent waiting on
 you.
 
-`multiplai-kit`'s `claude.sh` is the only observer standing outside the container
-when it dies, so it leaves an empty `<session-id>.exited` marker beside the entry
-once `docker run` returns; the plugin reads it as *ended* and clears it on the
-session's next event. Neither observer is complete — a reboot or a closed
-terminal kills the launcher along with the container, so those sessions are
-caught by neither and age out on the plugin's long cutoff.
+So the suite does not try to tell death from dormancy — **it makes the
+distinction not matter.** A session that has not spoken in 24 hours is filed as
+`idle`: still listed, because the tab you forgot about is exactly what you came
+looking for, but never *counted* toward the number that says how many agents
+want you. Anything the system is unsure about lands on the listed-but-not-
+counted side, which is what keeps that number honest without anyone having to
+guess.
 
-**The rule that keeps it coherent: the plugin owns the JSON, and anything outside
-a session leaves a one-bit marker file instead.** A launcher on a host with no
-`jq`, or a hub mid-handshake, must never become a second writer of registry
-state — that is how two stores start disagreeing silently.
+An observer outside the container was tried — the launcher dropping a marker
+when `docker run` returns — and dropped before release: a reboot or a closed
+terminal kills `claude.sh` along with the container, so it only ever covered
+`docker kill` and OOM-kills, which was worth zero entries on a real registry.
+Counting correctly did all of the work, and it works on vanilla Claude Code.
 
-Each half degrades alone: without the kit, uncleanly-killed sessions are listed
-as idle until they age out; without the plugin, the marker is written and nobody
-reads it. The full state model — every field, who writes it, and how each way of
-stopping a session is detected — is documented once, in the
+**The rule that survives it, and constrains the hub: the plugin owns the JSON,
+and anything outside a session leaves a one-bit marker file instead** — as the
+hub does with `<session-id>.adopt`. Nothing outside a session may become a
+second writer of registry *state*; that is how two stores start disagreeing
+silently.
+
+The full state model — every field, who writes it, and how the end of a session
+is detected — is documented once, in the
 [multiplai-context README](https://github.com/spikelab/multiplai-cc-mktplace/blob/main/plugins/multiplai-context/README.md#session-accounting).
 
 ## Delivery contracts
