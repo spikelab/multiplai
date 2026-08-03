@@ -13,6 +13,16 @@ as far as it applies to prose.
 
 ## [Unreleased]
 
+### Added
+
+- `ARCHITECTURE.md` gains **Runtime contract: who knows a session is over** —
+  the session registry shared between `multiplai-context` (which owns the JSON
+  entries) and `multiplai-kit` (whose launcher marks the ones whose container
+  has exited). It is the only runtime state two repos touch, and the reason it
+  needs two of them is worth stating in one place: a hook runs inside a session,
+  so a session cannot report its own death. Detail stays in the plugin README;
+  this records the contract and the marker-not-a-second-writer rule.
+
 ### Changed
 
 - README tagline is now the suite's one-liner — "Your agent's model of you

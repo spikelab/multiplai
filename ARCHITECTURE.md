@@ -56,6 +56,38 @@ cockpit is an adoption ladder, not four separate products.
         workspace (.multiplai/ memory·diary·learnings·dreams)   multiplai-core (library)
 ```
 
+## Runtime contract: who knows a session is over
+
+The one piece of shared state the repos write to *at runtime* rather than at
+release time, and the only place two of them touch the same directory — so it is
+worth stating here rather than in either half.
+
+`multiplai-context`'s lifecycle hooks maintain a **session registry** under
+`<workspace>/.multiplai/data/sessions/`, one JSON entry per session, and its
+fleet view aggregates that plus the per-session checkpoints into "which of my
+sessions needs me". The gap no hook can close is that **a hook is code running
+inside a session, so a session cannot report its own death**: only a clean exit
+fires `SessionEnd`. A container killed by a reboot, a `docker kill`, the OOM
+killer, or a closed terminal — routine under `docker run --rm` — leaves an entry
+whose last event is whatever happened before it died, which reads exactly like an
+agent waiting on you.
+
+`multiplai-kit`'s `claude.sh` is the only observer standing outside the container
+when it dies, so it leaves an empty `<session-id>.exited` marker beside the entry
+once `docker run` returns; the plugin reads it as *ended* and clears it on the
+session's next event.
+
+**The rule that keeps it coherent: the plugin owns the JSON, and anything outside
+a session leaves a one-bit marker file instead.** A launcher on a host with no
+`jq`, or a hub mid-handshake, must never become a second writer of registry
+state — that is how two stores start disagreeing silently.
+
+Each half degrades alone: without the kit, uncleanly-killed sessions are listed
+as idle until they age out; without the plugin, the marker is written and nobody
+reads it. The full state model — every field, who writes it, and how each way of
+stopping a session is detected — is documented once, in the
+[multiplai-context README](https://github.com/spikelab/multiplai-cc-mktplace/blob/main/plugins/multiplai-context/README.md#session-accounting).
+
 ## Delivery contracts
 
 Everything ships as **immutable tags** — merging to `main` alone delivers nothing.
