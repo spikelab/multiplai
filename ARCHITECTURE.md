@@ -67,15 +67,17 @@ worth stating here rather than in either half.
 fleet view aggregates that plus the per-session checkpoints into "which of my
 sessions needs me". The gap no hook can close is that **a hook is code running
 inside a session, so a session cannot report its own death**: only a clean exit
-fires `SessionEnd`. A container killed by a reboot, a `docker kill`, the OOM
-killer, or a closed terminal — routine under `docker run --rm` — leaves an entry
-whose last event is whatever happened before it died, which reads exactly like an
-agent waiting on you.
+fires `SessionEnd`. A container killed by a `docker kill`, the OOM killer, or a
+crash — routine under `docker run --rm` — leaves an entry whose last event is
+whatever happened before it died, which reads exactly like an agent waiting on
+you.
 
 `multiplai-kit`'s `claude.sh` is the only observer standing outside the container
 when it dies, so it leaves an empty `<session-id>.exited` marker beside the entry
 once `docker run` returns; the plugin reads it as *ended* and clears it on the
-session's next event.
+session's next event. Neither observer is complete — a reboot or a closed
+terminal kills the launcher along with the container, so those sessions are
+caught by neither and age out on the plugin's long cutoff.
 
 **The rule that keeps it coherent: the plugin owns the JSON, and anything outside
 a session leaves a one-bit marker file instead.** A launcher on a host with no
