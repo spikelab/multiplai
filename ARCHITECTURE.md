@@ -56,6 +56,46 @@ cockpit is an adoption ladder, not four separate products.
         workspace (.multiplai/ memory·diary·learnings·dreams)   multiplai-core (library)
 ```
 
+## Runtime contract: who knows a session is over
+
+The one piece of shared state the repos write to *at runtime* rather than at
+release time, and the only place two of them touch the same directory — so it is
+worth stating here rather than in either half.
+
+`multiplai-context`'s lifecycle hooks maintain a **session registry** under
+`<workspace>/.multiplai/data/sessions/`, one JSON entry per session, and its
+fleet view aggregates that plus the per-session checkpoints into "which of my
+sessions needs me". The gap no hook can close is that **a hook is code running
+inside a session, so a session cannot report its own death**: only a clean exit
+fires `SessionEnd`. A container killed by a `docker kill`, the OOM killer, or a
+crash — routine under `docker run --rm` — leaves an entry whose last event is
+whatever happened before it died, which reads exactly like an agent waiting on
+you.
+
+So the suite does not try to tell death from dormancy — **it makes the
+distinction not matter.** A session that has not spoken in 24 hours is filed as
+`idle`: still listed, because the tab you forgot about is exactly what you came
+looking for, but never *counted* toward the number that says how many agents
+want you. Anything the system is unsure about lands on the listed-but-not-
+counted side, which is what keeps that number honest without anyone having to
+guess.
+
+An observer outside the container was tried — the launcher dropping a marker
+when `docker run` returns — and dropped before release: a reboot or a closed
+terminal kills `claude.sh` along with the container, so it only ever covered
+`docker kill` and OOM-kills, which was worth zero entries on a real registry.
+Counting correctly did all of the work, and it works on vanilla Claude Code.
+
+**The rule that survives it, and constrains the hub: the plugin owns the JSON,
+and anything outside a session leaves a one-bit marker file instead** — as the
+hub does with `<session-id>.adopt`. Nothing outside a session may become a
+second writer of registry *state*; that is how two stores start disagreeing
+silently.
+
+The full state model — every field, who writes it, and how the end of a session
+is detected — is documented once, in the
+[multiplai-context README](https://github.com/spikelab/multiplai-cc-mktplace/blob/main/plugins/multiplai-context/README.md#session-accounting).
+
 ## Delivery contracts
 
 Everything ships as **immutable tags** — merging to `main` alone delivers nothing.

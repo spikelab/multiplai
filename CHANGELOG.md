@@ -13,6 +13,19 @@ as far as it applies to prose.
 
 ## [Unreleased]
 
+### Added
+
+- `ARCHITECTURE.md` gains **Runtime contract: who knows a session is over** —
+  the session registry under `.multiplai/data/sessions/`, the only runtime
+  state more than one repo touches. It states the constraint in one place
+  rather than in either half: a hook runs inside a session, so a session
+  cannot report its own death, and no observer outside it can tell a killed
+  container from a tab left open. The suite's answer is to make the
+  distinction not matter — quiet sessions are listed but never counted — and
+  the rule that binds the hub is that only the plugin writes the JSON;
+  everything else leaves a one-bit marker file. Detail stays in the plugin
+  README.
+
 ### Changed
 
 - README tagline is now the suite's one-liner — "Your agent's model of you
