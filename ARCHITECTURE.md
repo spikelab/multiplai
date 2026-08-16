@@ -11,8 +11,9 @@ persistent working environment that compounds — it learns what you approve:
   makes every session smarter than the last;
 - a **sandboxed container runtime** that makes `--dangerously-skip-permissions` safe,
   because the container itself is the permission boundary;
-- **the memory engine plus six skill packs** — 40+ skills covering development,
-  research, media, messaging, product management, and writing (the authoritative list
+- **the memory engine plus seven skill packs** — 44 skills covering development,
+  research, media, messaging, product management, writing, and Apple-platform
+  builds (the authoritative list
   is the compatibility matrix in the
   [multiplai-cc-mktplace README](https://github.com/spikelab/multiplai-cc-mktplace#compatibility-matrix));
 - and, on the roadmap, a **native macOS/iOS app** for observing and orchestrating many
@@ -24,8 +25,8 @@ Four published repos plus this umbrella, with the cockpit still to come.
 
 | Repo | Role | One-liner |
 |---|---|---|
-| [multiplai-container](https://github.com/spikelab/multiplai-container) | The sandbox | Docker image with a pinned toolchain + a key-restricted macOS SSH bridge for host-only tools (Xcode, whisper, real Chrome). Usable standalone. |
-| [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features | Claude Code plugin marketplace: `multiplai-context` (the memory engine) plus six themed skill packs. Works on vanilla Claude Code. |
+| [multiplai-container](https://github.com/spikelab/multiplai-container) | The sandbox | Docker image with a pinned toolchain + a key-restricted macOS SSH bridge for host-only tools (Xcode, whisper, real Chrome — the browser behind a second, host-only opt-in). Usable standalone. |
+| [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features | Claude Code plugin marketplace: `multiplai-context` (the memory engine) plus seven themed skill packs. Works on vanilla Claude Code. |
 | [multiplai-kit](https://github.com/spikelab/multiplai-kit) | Distribution & runtime | What you clone for the full experience: `setup.sh` scaffolds workspace + runtime, `claude.sh` launches sessions; your `~/.claude` stays untouched. |
 | [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library | Typed Python plumbing (paths, config, model client, agent runner, costing, logging) consumed by plugin scripts via immutable git-tag pins. |
 | **multiplai-gui** *(coming soon)* | The cockpit | Will be a FastAPI hub + SwiftUI app (macOS/iOS): session board, live feed, chat-driving, dreams triage, costs, memory browser, health. Not yet released; the repo stays private until it is. |
@@ -50,7 +51,7 @@ cockpit is an adoption ladder, not four separate products.
                     ▼                                                        │
  user ──► multiplai-kit (claude.sh / setup.sh)                               │
              │  pins tag ──► multiplai-container (image + SSH bridge)        │
-             │  installs ──► multiplai-cc-mktplace (7 plugins) ◄─────────────┘
+             │  installs ──► multiplai-cc-mktplace (8 plugins) ◄─────────────┘
              │                     │  PEP-723 tag pins                (reads .multiplai/,
              ▼                     ▼                                   calls plugin scripts)
         workspace (.multiplai/ memory·diary·learnings·dreams)   multiplai-core (library)
