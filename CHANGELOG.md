@@ -28,6 +28,21 @@ as far as it applies to prose.
 
 ### Changed
 
+- **"Six skill packs" is now seven, and "40+ skills" is 44.**
+  `multiplai-apple` shipped on 2026-08-15 (the macOS-only `swift-build` split
+  out of `multiplai-dev` so a Linux user is not carrying an Xcode skill), which
+  left four statements here one short: two in `README.md`, two in
+  `ARCHITECTURE.md`, plus the interlock diagram's "(7 plugins)". The skill
+  count is counted, not estimated —
+  `find plugins -name SKILL.md -path '*/skills/*' | wc -l` in the marketplace
+  repo returns 44.
+- **The host browser now has its own switch, and the security bullet says so.**
+  The README already promised that bridge skills are enabled deliberately and
+  "never by default"; until multiplai-container #23 that was aspiration for the
+  browser, which the bridge turned on wholesale. It is now literal: the gateway
+  refuses `agent-browser` unless a flag file exists on the Mac, and nothing in
+  a container can create it. One clause in each of README and `ARCHITECTURE.md`
+  — the mechanism stays in the container README.
 - README tagline is now the suite's one-liner — "Your agent's model of you
   should be something you edited, not something that accreted while you
   weren't looking" — replacing "The first human-centered agentic harness";

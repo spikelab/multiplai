@@ -42,12 +42,15 @@ anything else well.
   permission boundary. A key-restricted SSH bridge exists for the few tools
   that genuinely need your Mac (Xcode, Whisper, your real Chrome), and every
   bridge skill you enable widens that boundary: you enable them deliberately,
-  knowing what each opens up, never by default. You stop babysitting prompts
+  knowing what each opens up, never by default. The browser is the sharpest
+  example and gets its own switch — reaching your real logged-in Chrome means
+  reaching every cookie on the machine, so enabling the bridge does not enable
+  it; a file only you can create on the Mac does. You stop babysitting prompts
   because the walls are real and you know exactly where the doors are.
-- **40+ skills — the memory engine plus six skill packs.** Autonomous
+- **44 skills — the memory engine plus seven skill packs.** Autonomous
   spec-driven builds, deep research, transcription, Slack and Gmail, PM
-  artefacts, long-form writing. Each one encodes *how* the work should be
-  done, so your standards travel with the task. The authoritative list is the
+  artefacts, long-form writing, Apple-platform builds. Each one encodes *how*
+  the work should be done, so your standards travel with the task. The authoritative list is the
   compatibility matrix in the
   [multiplai-cc-mktplace README](https://github.com/spikelab/multiplai-cc-mktplace#compatibility-matrix).
 
@@ -94,7 +97,7 @@ the sandboxed full environment instead? Clone
 | Repo | Role |
 |---|---|
 | [multiplai-container](https://github.com/spikelab/multiplai-container) | The sandbox — Docker image + macOS SSH bridge. Usable standalone. |
-| [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features — plugin marketplace: memory engine + six skill packs. Works on vanilla Claude Code. |
+| [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features — plugin marketplace: memory engine + seven skill packs. Works on vanilla Claude Code. |
 | [multiplai-kit](https://github.com/spikelab/multiplai-kit) | Distribution — `setup.sh` + `claude.sh`; the full environment, without touching your `~/.claude`. |
 | [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library — the typed Python plumbing the plugin scripts pin. |
 | **multiplai-gui** *(coming soon)* | The cockpit — a FastAPI hub + SwiftUI app for session orchestration. Not yet released; the repo is private until it is. |
