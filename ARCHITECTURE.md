@@ -28,7 +28,7 @@ Four published repos plus this umbrella, with the cockpit still to come.
 | [multiplai-container](https://github.com/spikelab/multiplai-container) | The sandbox | Docker image with a pinned toolchain + a key-restricted macOS SSH bridge for host-only tools (Xcode, whisper, real Chrome — the browser behind a second, host-only opt-in). Usable standalone. |
 | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features | Claude Code plugin marketplace: `multiplai-context` (the memory engine) plus seven themed skill packs. Works on vanilla Claude Code. |
 | [multiplai-kit](https://github.com/spikelab/multiplai-kit) | Distribution & runtime | What you clone for the full experience: `setup.sh` scaffolds workspace + runtime, `claude.sh` launches sessions; your `~/.claude` stays untouched. |
-| [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library | Typed Python plumbing (paths, config, model client, agent runner, costing, logging) consumed by plugin scripts via immutable git-tag pins. |
+| [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library | Typed Python plumbing (paths, config, model client, agent runner, costing, logging) imported by plugin scripts; the marketplace's single `uv.lock` fixes which commit they get. |
 | **multiplai-gui** *(coming soon)* | The cockpit | Will be a FastAPI hub + SwiftUI app (macOS/iOS): session board, live feed, chat-driving, dreams triage, costs, memory browser, health. Not yet released; the repo stays private until it is. |
 
 ## Which part do I need?
@@ -52,7 +52,7 @@ cockpit is an adoption ladder, not four separate products.
  user ──► multiplai-kit (claude.sh / setup.sh)                               │
              │  pins tag ──► multiplai-container (image + SSH bridge)        │
              │  installs ──► multiplai-cc-mktplace (8 plugins) ◄─────────────┘
-             │                     │  PEP-723 tag pins                (reads .multiplai/,
+             │                     │  one root uv.lock                (reads .multiplai/,
              ▼                     ▼                                   calls plugin scripts)
         workspace (.multiplai/ memory·diary·learnings·dreams)   multiplai-core (library)
 ```
@@ -108,6 +108,12 @@ Everything ships as **immutable tags** — merging to `main` alone delivers noth
   the pinned container tag (shallow, detached-HEAD — never hand-edit it).
 - **Plugins:** versioned in `marketplace.json`, tagged `<plugin>@<version>`, updated via
   Claude Code's `/plugin` menu.
-- **Core → plugins:** each plugin script pins `multiplai-core@vX.Y.Z` in its PEP 723
-  header (heavyweight pipelines pin via `uv.lock`); pins are bumped deliberately,
-  per consumer.
+- **Core → plugins:** the marketplace repo is a single `uv` workspace. Every script
+  directory that needs third-party dependencies is a member with its own
+  `pyproject.toml`, the root `[tool.uv.sources]` names `multiplai-core` once and
+  unpinned, and one `uv.lock` at the root fixes the commit all members resolve to.
+  So the whole marketplace steps to a new core together, never member by member.
+  Dependabot re-locks third-party dependencies weekly; it does **not** move
+  `multiplai-core`, which it cannot see because the dependency is a git URL —
+  core advances when someone re-locks deliberately, and publishing core to PyPI
+  is what would close that gap.

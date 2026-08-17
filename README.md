@@ -92,6 +92,13 @@ Then `/plugin install multiplai-context@multiplai` for the memory engine. Want
 the sandboxed full environment instead? Clone
 [multiplai-kit](https://github.com/spikelab/multiplai-kit) and run `./setup.sh`.
 
+Either way, read
+**[GETTING-STARTED.md](https://github.com/spikelab/multiplai-kit/blob/main/GETTING-STARTED.md)**
+next. It walks a first install end to end: what to run after `setup.sh`, what
+your first session should look like, how the work → dream → review loop fits
+together, which memory router to pick and what each one costs, and what the
+first few failures mean.
+
 ## The repos
 
 | Repo | Role |
@@ -99,7 +106,7 @@ the sandboxed full environment instead? Clone
 | [multiplai-container](https://github.com/spikelab/multiplai-container) | The sandbox — Docker image + macOS SSH bridge. Usable standalone. |
 | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features — plugin marketplace: memory engine + seven skill packs. Works on vanilla Claude Code. |
 | [multiplai-kit](https://github.com/spikelab/multiplai-kit) | Distribution — `setup.sh` + `claude.sh`; the full environment, without touching your `~/.claude`. |
-| [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library — the typed Python plumbing the plugin scripts pin. |
+| [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library — the typed Python plumbing every plugin script imports. |
 | **multiplai-gui** *(coming soon)* | The cockpit — a FastAPI hub + SwiftUI app for session orchestration. Not yet released; the repo is private until it is. |
 
 ## Which part do you need?
@@ -125,10 +132,11 @@ The docs are the READMEs. Each repo's README is the deepest source for its own
 component; [ARCHITECTURE.md](./ARCHITECTURE.md) is the map across them; the
 changelogs below are the release record. A dedicated docs site may follow.
 
+- [GETTING-STARTED.md](https://github.com/spikelab/multiplai-kit/blob/main/GETTING-STARTED.md) — **read this first**: a first install end to end, the daily loop, choosing a memory router, and what the early failures mean
 - [multiplai-container README](https://github.com/spikelab/multiplai-container#readme) — image contents, the SSH bridge, tag/release contract
 - [multiplai-cc-mktplace README](https://github.com/spikelab/multiplai-cc-mktplace#readme) — every plugin and skill, the compatibility matrix, what runs unattended
 - [multiplai-kit README](https://github.com/spikelab/multiplai-kit#readme) — install, configuration, credentials blast radius
-- [multiplai-core README](https://github.com/spikelab/multiplai-core#readme) — the library API and its pinning contract
+- [multiplai-core README](https://github.com/spikelab/multiplai-core#readme) — the library API and how the marketplace resolves it
 - [CHANGELOG.md](./CHANGELOG.md) — changes to this repo's documentation
 
 ### Releases
@@ -136,7 +144,7 @@ changelogs below are the release record. A dedicated docs site may follow.
 What shipped recently, per component:
 
 - [multiplai-container CHANGELOG](https://github.com/spikelab/multiplai-container/blob/main/CHANGELOG.md) — the tag consumed by the kit's `CONTAINER_REF` pin
-- [multiplai-core CHANGELOG](https://github.com/spikelab/multiplai-core/blob/main/CHANGELOG.md) — the tags plugin scripts pin
+- [multiplai-core CHANGELOG](https://github.com/spikelab/multiplai-core/blob/main/CHANGELOG.md) — the library the marketplace's `uv.lock` resolves
 - [multiplai-cc-mktplace CHANGELOG](https://github.com/spikelab/multiplai-cc-mktplace/blob/main/CHANGELOG.md) — an index across the per-plugin changelogs (`plugins/<plugin>/CHANGELOG.md`), tagged `<plugin>@<version>`
 - [multiplai-kit CHANGELOG](https://github.com/spikelab/multiplai-kit/blob/main/CHANGELOG.md) — untagged so far; the kit is consumed by `git pull && ./setup.sh`
 
