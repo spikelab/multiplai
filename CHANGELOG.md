@@ -15,6 +15,12 @@ as far as it applies to prose.
 
 ### Added
 
+- README: an "environment per project" bullet and a repos-table mention for
+  overlay images (multiplai-container v0.12) — per-project/per-task
+  environments built on top of the base image and selected per launch.
+
+### Added
+
 - `ARCHITECTURE.md` gains **Runtime contract: who knows a session is over** —
   the session registry under `.multiplai/data/sessions/`, the only runtime
   state more than one repo touches. It states the constraint in one place
