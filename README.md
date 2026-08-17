@@ -47,6 +47,16 @@ anything else well.
   reaching every cookie on the machine, so enabling the bridge does not enable
   it; a file only you can create on the Mac does. You stop babysitting prompts
   because the walls are real and you know exactly where the doors are.
+- **An environment per project, not one blessed image.** Because sessions run
+  in Docker images, the sandbox doubles as something more useful: a fully
+  custom environment for Claude Code. A small overlay Dockerfile in a
+  project's own repo — a Django or FastAPI stack with its database server and
+  the locale its tests need, a pinned Node.js runtime, a data-science image
+  with Jupyter and pandas — builds on top of the generic base, is rebuilt
+  automatically by setup when the base or the overlay changes, and is
+  selected per launch with a profile. Your agent gets exactly the environment
+  each task needs, and switching is one flag. See
+  [overlay images](https://github.com/spikelab/multiplai-container#overlay-images--build-any-environment-for-claude-code).
 - **44 skills — the memory engine plus seven skill packs.** Autonomous
   spec-driven builds, deep research, transcription, Slack and Gmail, PM
   artefacts, long-form writing, Apple-platform builds. Each one encodes *how*
@@ -103,7 +113,7 @@ first few failures mean.
 
 | Repo | Role |
 |---|---|
-| [multiplai-container](https://github.com/spikelab/multiplai-container) | The sandbox — Docker image + macOS SSH bridge. Usable standalone. |
+| [multiplai-container](https://github.com/spikelab/multiplai-container) | The sandbox — Docker image + macOS SSH bridge; overlay images build per-project environments on top. Usable standalone. |
 | [multiplai-cc-mktplace](https://github.com/spikelab/multiplai-cc-mktplace) | The features — plugin marketplace: memory engine + seven skill packs. Works on vanilla Claude Code. |
 | [multiplai-kit](https://github.com/spikelab/multiplai-kit) | Distribution — `setup.sh` + `claude.sh`; the full environment, without touching your `~/.claude`. |
 | [multiplai-core](https://github.com/spikelab/multiplai-core) | Shared library — the typed Python plumbing every plugin script imports. |
