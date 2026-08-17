@@ -108,6 +108,9 @@ Everything ships as **immutable tags** — merging to `main` alone delivers noth
   the pinned container tag (shallow, detached-HEAD — never hand-edit it).
 - **Plugins:** versioned in `marketplace.json`, tagged `<plugin>@<version>`, updated via
   Claude Code's `/plugin` menu.
-- **Core → plugins:** each plugin script pins `multiplai-core@vX.Y.Z` in its PEP 723
-  header (heavyweight pipelines pin via `uv.lock`); pins are bumped deliberately,
-  per consumer.
+- **Core → plugins:** the marketplace repo is a single `uv` workspace. Every plugin
+  script directory is a member with its own `pyproject.toml`, the root
+  `[tool.uv.sources]` names `multiplai-core` once and unpinned, and one `uv.lock`
+  at the root fixes the commit all members resolve to. Dependabot moves that lock
+  forward weekly and CI runs the suites against it before it merges — so the whole
+  marketplace steps to a new core together, never member by member.
