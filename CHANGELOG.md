@@ -28,21 +28,34 @@ as far as it applies to prose.
 - **README points at the kit's `GETTING-STARTED.md`** in two places — the end
   of "Start here" and the top of the "Docs" list. The front door told a new
   reader which command to run and then left them there; the guide is the thing
-  that carries them from `setup.sh` to a working first session. The link
-  resolves once multiplai-kit #69 merges.
+  that carries them from `setup.sh` to a working first session. The file ships
+  from multiplai-kit, so that repo's change lands first.
 
 ### Changed
 
 - **`ARCHITECTURE.md` no longer says plugin scripts pin core in a PEP 723
   header.** That convention was retired: the marketplace repo is now one `uv`
-  workspace, each script directory is a member with its own `pyproject.toml`,
-  the root `[tool.uv.sources]` names `multiplai-core` once and unpinned, and a
-  single root `uv.lock` fixes the commit every member resolves to. Dependabot
-  moves the lock weekly against CI. The old wording described per-consumer
-  pins that no longer exist — and the marketplace's own lint now rejects a
-  PEP 723 header. Two README lines that leaned on the same idea ("the typed
-  Python plumbing the plugin scripts pin", "the tags plugin scripts pin") were
-  reworded with it.
+  workspace, each script directory that needs third-party dependencies is a
+  member with its own `pyproject.toml`, the root `[tool.uv.sources]` names
+  `multiplai-core` once and unpinned, and a single root `uv.lock` fixes the
+  commit every member resolves to. The old wording described per-consumer pins
+  that no longer exist — and the marketplace's own `lint_workspace.py` now
+  rejects a PEP 723 header outright.
+
+  Two other places said the retired thing and were missed on the first pass:
+  the components table called core "consumed by plugin scripts via immutable
+  git-tag pins", and the interlock diagram labelled that arrow
+  `PEP-723 tag pins`. Both now name the lock.
+
+  The bullet also **no longer claims Dependabot moves core.** It does not, and
+  `multiplai-cc-mktplace`'s own `dependabot.yml` says why under a *Known gap*
+  heading: Dependabot cannot bump a git-sourced dependency, and core is
+  declared as a git URL. The weekly re-lock is real and covers third-party
+  dependencies; core advances only when someone re-locks deliberately.
+
+  Three README lines that leaned on the pinning idea were reworded with it:
+  "the typed Python plumbing the plugin scripts pin", "the library API and its
+  pinning contract", and "the tags plugin scripts pin".
 - **"Six skill packs" is now seven, and "40+ skills" is 44.**
   `multiplai-apple` shipped on 2026-08-15 (the macOS-only `swift-build` split
   out of `multiplai-dev` so a Linux user is not carrying an Xcode skill), which
