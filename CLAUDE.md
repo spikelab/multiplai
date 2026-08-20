@@ -5,8 +5,8 @@ canonical `ARCHITECTURE.md`. The five component repos link here rather than
 carrying their own copies of the architecture — so an edit to `ARCHITECTURE.md`
 changes what every component repo points at. Treat it accordingly.
 
-Files: `README.md`, `ARCHITECTURE.md`, `CHANGELOG.md`, `CLAUDE.md`, `LICENSE`,
-`.gitignore`. There is no build, no test suite, and no CI.
+Files: `README.md`, `ARCHITECTURE.md`, `CHANGELOG.md`, `CLAUDE.md`, `SECURITY.md`,
+`LICENSE`, `.gitignore`. There is no build, no test suite, and no CI.
 
 ## Never state a count from memory
 
@@ -26,10 +26,11 @@ for d in PROJECTS/multiplai-cc-mktplace/plugins/*/; do \
 ls PROJECTS/multiplai-kit/dotfiles/reference/dev/*.md | wc -l
 ```
 
-Prefer growth-tolerant phrasing ("40+ skills") over an exact number that will
-drift again, and name `multiplai-cc-mktplace`'s compatibility matrix as the
-authoritative list. Note that `multiplai-context` is a plugin but not a *skill
-pack* — the correct framing is "the memory engine plus six skill packs".
+An exact number is fine only when counted, not estimated — the README's current
+convention — and it must be re-counted on every edit that touches it. Always name
+`multiplai-cc-mktplace`'s compatibility matrix as the authoritative list. Note
+that `multiplai-context` is a plugin but not a *skill pack* — the correct
+framing is "the memory engine plus seven skill packs".
 
 ## `multiplai-gui` is private and unreleased
 

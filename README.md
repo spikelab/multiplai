@@ -57,7 +57,7 @@ anything else well.
   selected per launch with a profile. Your agent gets exactly the environment
   each task needs, and switching is one flag. See
   [overlay images](https://github.com/spikelab/multiplai-container#overlay-images--build-any-environment-for-claude-code).
-- **44 skills — the memory engine plus seven skill packs.** Autonomous
+- **45 skills — the memory engine plus seven skill packs.** Autonomous
   spec-driven builds, deep research, transcription, Slack and Gmail, PM
   artefacts, long-form writing, Apple-platform builds. Each one encodes *how*
   the work should be done, so your standards travel with the task. The authoritative list is the

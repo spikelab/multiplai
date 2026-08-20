@@ -19,8 +19,6 @@ as far as it applies to prose.
   overlay images (multiplai-container v0.12) — per-project/per-task
   environments built on top of the base image and selected per launch.
 
-### Added
-
 - `ARCHITECTURE.md` gains **Runtime contract: who knows a session is over** —
   the session registry under `.multiplai/data/sessions/`, the only runtime
   state more than one repo touches. It states the constraint in one place
@@ -36,8 +34,30 @@ as far as it applies to prose.
   reader which command to run and then left them there; the guide is the thing
   that carries them from `setup.sh` to a working first session. The file ships
   from multiplai-kit, so that repo's change lands first.
+- README `## Community` section — Discussions on this repo as the suite's
+  community home; bugs go to component-repo issues.
+- `SECURITY.md` — reporting contact (`security@spikelab.org`) scoped to this
+  repo's docs-and-coordination role, pointing component vulnerabilities at
+  the component repos.
+- `CLAUDE.md` — working rules for agents editing this repo: no code lives here,
+  counts must be re-derived from the source repos, `multiplai-gui` stays unlinked
+  until it ships.
+- `CHANGELOG.md` (this file).
+- README "Start here" section with the one command a first-time visitor can paste.
+- README "Docs" → "Releases" subsection linking each component's release record.
 
 ### Changed
+
+- **Skill count is 45, was stated as 44.** `multiplai-pm` gained the `plane`
+  skill (marketplace #224, merged after the last count); re-counted with
+  `find plugins -name SKILL.md -path '*/skills/*' | wc -l`. One line each in
+  `README.md` and `ARCHITECTURE.md`.
+- **`CLAUDE.md` re-synced with the docs it governs**: `SECURITY.md` added to
+  its file list, "six skill packs" corrected to seven, and its count guidance
+  now states the counted-not-estimated convention the docs actually follow
+  instead of the retired growth-tolerant ("40+") phrasing.
+- **The three `### Added` headings under [Unreleased] merged into one**, per
+  the Keep a Changelog format this file declares.
 
 - **`ARCHITECTURE.md` no longer says plugin scripts pin core in a PEP 723
   header.** That convention was retired: the marketplace repo is now one `uv`
@@ -105,20 +125,6 @@ as far as it applies to prose.
 - Skill count corrected and made growth-tolerant — "40+ skills, the memory engine
   plus six skill packs" (was "~35 skills in 7 plugin packs"), pointing at the
   `multiplai-cc-mktplace` compatibility matrix as the authoritative list.
-
-### Added
-
-- README `## Community` section — Discussions on this repo as the suite's
-  community home; bugs go to component-repo issues.
-- `SECURITY.md` — reporting contact (`security@spikelab.org`) scoped to this
-  repo's docs-and-coordination role, pointing component vulnerabilities at
-  the component repos.
-- `CLAUDE.md` — working rules for agents editing this repo: no code lives here,
-  counts must be re-derived from the source repos, `multiplai-gui` stays unlinked
-  until it ships.
-- `CHANGELOG.md` (this file).
-- README "Start here" section with the one command a first-time visitor can paste.
-- README "Docs" → "Releases" subsection linking each component's release record.
 
 ## [0.1.0] – 2026-07-26
 

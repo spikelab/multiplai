@@ -11,7 +11,7 @@ persistent working environment that compounds — it learns what you approve:
   makes every session smarter than the last;
 - a **sandboxed container runtime** that makes `--dangerously-skip-permissions` safe,
   because the container itself is the permission boundary;
-- **the memory engine plus seven skill packs** — 44 skills covering development,
+- **the memory engine plus seven skill packs** — 45 skills covering development,
   research, media, messaging, product management, writing, and Apple-platform
   builds (the authoritative list
   is the compatibility matrix in the
